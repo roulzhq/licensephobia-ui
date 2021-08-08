@@ -16,5 +16,8 @@
     "eslint-plugin-import": "^2.23.4",
     "svelte": "^3.37.0",
     "vite": "^2.4.4"
+  },
+  "dependencies": {
+    "svelte-routing": "^1.6.0"
   }
 }
