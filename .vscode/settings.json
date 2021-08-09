@@ -1,0 +1,13 @@
+{
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true,
+    "files.associations": {
+        "*.svelte": "html"
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html"
+    ],
+    "files.eol": "\n",
+}
