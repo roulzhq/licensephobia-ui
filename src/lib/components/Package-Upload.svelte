@@ -21,7 +21,7 @@
 
 </script>
 
-    <input type="file" id="uploadJson" name="uploadJson" bind:files>
+    <input type="file" id="uploadJson" name="uploadJson" accept=".json,application/json" bind:files>
 
     {#if jsonFile && files[0]}
         <p>{files[0].name}</p>
