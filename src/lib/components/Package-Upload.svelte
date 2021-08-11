@@ -1,1 +1,51 @@
-<input type="file">
+<script>
+  let files;
+  let valid = false;
+  let validation = "";
+
+  const uploadClick = async () => {
+    const file = files[0];
+    const jsonString = await file.text();
+
+    try {
+    validation = JSON.parse(jsonString);
+    console.log(validation);
+    valid = true;
+    } catch(e) {
+        console.log(e);
+        valid = false;
+        alert('Please select a JSON file');
+    }
+
+    if(valid ===true) {
+    fetch('http://localhost:8000/files/nodejs', {
+      method: 'POST',
+      body: JSON.stringify(jsonString)
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log('Success: ', result);
+      })
+      .catch((error) => {
+        console.error('Error: ', error);
+      });
+    }
+  };
+
+</script>
+
+<div>
+  <input
+    type="file"
+    id="uploadJson"
+    name="uploadJson"
+    accept=".json,application/json"
+    bind:files
+  />
+
+  <!-- {#if valid} -->
+  <button on:click="{uploadClick}">Submit</button>
+  <!-- {:else} -->
+  <button on:click="{uploadClick}" disabled>Submit</button>
+  <!-- {/if} -->
+</div>
