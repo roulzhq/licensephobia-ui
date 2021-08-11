@@ -1,34 +1,36 @@
 <script>
+  let files;
 
-    let files;
-    let jsonFile = null;
+  const uploadClick = async () => {
+    const file = files[0];
+    const jsonString = await file.text();
 
-    const uploadClick = () => {
-      
-      const formData = new FormData();
-      formData.append('jsonFile', files[0]);
-      const upload = fetch('url', {
-          method: 'POST',
-          body: formData
-      }).then((response) => response.json()).then((result) => {
-          console.log('Success: ', result);
+    fetch('http://localhost:8000/files/nodejs', {
+      method: 'POST',
+      body: jsonString
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log('Success: ', result);
       })
-        .catch((error) => {
-            console.error('Error: ', error);
-        });
-    };
-
-
+      .catch((error) => {
+        console.error('Error: ', error);
+      });
+  };
 </script>
 
-    <input type="file" id="uploadJson" name="uploadJson" accept=".json,application/json" bind:files>
+<div>
+  <input
+    type="file"
+    id="uploadJson"
+    name="uploadJson"
+    accept=".json,application/json"
+    bind:files
+  />
 
-    {#if jsonFile && files[0]}
-        <p>{files[0].name}</p>
-    {/if}
-
-    <!-- {#if value} -->
-        <button on:click={uploadClick}>Submit</button>
-    <!-- {:else} -->
-        <button on:click={uploadClick} disabled>Submit</button>
-    <!-- {/if} -->
+  <!-- {#if value} -->
+  <button on:click="{uploadClick}">Submit</button>
+  <!-- {:else} -->
+  <button on:click="{uploadClick}" disabled>Submit</button>
+  <!-- {/if} -->
+</div>
