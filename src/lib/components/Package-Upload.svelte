@@ -7,7 +7,7 @@
 
     fetch('http://localhost:8000/files/nodejs', {
       method: 'POST',
-      body: jsonString
+      body: JSON.stringify(jsonString)
     })
       .then((response) => response.json())
       .then((result) => {
