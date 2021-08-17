@@ -28,4 +28,8 @@
     height: 100vh;
     width: 100vw;
   }
+
+  #app main {
+    height: 100%;
+  }
 </style>
