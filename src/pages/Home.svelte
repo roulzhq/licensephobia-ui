@@ -3,6 +3,7 @@
     import PackageViewer from '../lib/components/Package-Viewer.svelte';
 
     let scannedPackage = null;
+    let searchedPackage = null;
 
     let scanningStarted = false;
     let scanningCompleted = false;
@@ -10,6 +11,10 @@
     function onUploadDone(pkg) {
       scannedPackage = pkg;
       scanningCompleted = true;
+    }
+
+    function onSearchDone(pkg) {
+        searchedPackage = pkg
     }
 
     function onUploadStarted() {

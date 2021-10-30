@@ -1,4 +1,5 @@
 <script>
+  import PackageTile from '../components/Package-Tile.svelte';
   // eslint-disable-next-line import/no-mutable-exports
   export let packageResult = null;
 

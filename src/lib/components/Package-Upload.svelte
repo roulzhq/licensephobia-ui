@@ -1,13 +1,15 @@
-
 <script>
   /* eslint-disable-next-line import/no-mutable-exports */
   export let onUploadStarted = null;
   /* eslint-disable-next-line import/no-mutable-exports */
   export let onUploadDone = null;
+  export let onSearchDone = null;
 
   let files;
   let valid = false;
   let validation = '';
+
+  let searchString = '';
 
   const uploadClick = async () => {
     const file = files[0];
@@ -39,7 +41,30 @@
         });
     }
   };
+
+  const searchClick = async () => {
+    fetch('http://localhost:8000/search/npm', {
+      method: 'POST',
+      body: searchString,
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((result) => {
+      onSearchDone(result);
+    })
+    .catch((error) => {
+      console.error('Error: ', error);
+    });
+  };
 </script>
+
+<div class="package-search">
+  <input type="search" id="searchPkg" name="searchPkg" placeholder="SEARCH PACKAGE" value="{searchString}"/>
+
+  <button on:click ="{searchClick}">SEARCH</button>
+</div>
 
 <div class="package-upload">
   <input
@@ -55,6 +80,13 @@
 
 <style>
   .package-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+
+  .package-search {
     display: flex;
     justify-content: center;
     align-items: center;
