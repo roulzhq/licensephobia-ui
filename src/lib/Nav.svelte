@@ -6,7 +6,6 @@
   <h1>Licensephobia</h1>
   <div class="nav-links">
     <Link to="/" class="nav-link">Home</Link>
-    <Link to="project" class="nav-link">Project</Link>
   </div>
 </nav>
 

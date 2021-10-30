@@ -1,4 +1,10 @@
+
 <script>
+  /* eslint-disable-next-line import/no-mutable-exports */
+  export let onUploadStarted = null;
+  /* eslint-disable-next-line import/no-mutable-exports */
+  export let onUploadDone = null;
+
   let files;
   let valid = false;
   let validation = '';
@@ -9,7 +15,6 @@
 
     try {
       validation = JSON.parse(jsonString);
-      console.log(validation);
       valid = true;
     } catch (e) {
       valid = false;
@@ -17,6 +22,7 @@
     }
 
     if (valid === true) {
+      onUploadStarted();
       fetch('http://localhost:8000/files/nodejs', {
         method: 'POST',
         body: jsonString,
@@ -26,7 +32,7 @@
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log('Success: ', result);
+          onUploadDone(result);
         })
         .catch((error) => {
           console.error('Error: ', error);

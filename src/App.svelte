@@ -3,7 +3,6 @@
 
   import Home from './pages/Home.svelte';
   import Nav from './lib/Nav.svelte';
-  import Project from './pages/Project.svelte';
 
   // eslint-disable-next-line import/prefer-default-export
   export const url = '';
@@ -13,7 +12,6 @@
   <Router url="{url}">
     <Nav></Nav>
     <main>
-      <Route path="project" component="{Project}" /> 
       <Route path="/"><Home /></Route>
     </main>
   </Router>
