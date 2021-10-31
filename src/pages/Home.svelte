@@ -9,12 +9,13 @@
     let scanningCompleted = false;
 
     function onUploadDone(pkg) {
+      console.log(pkg);
       scannedPackage = pkg;
       scanningCompleted = true;
     }
 
     function onSearchDone(pkg) {
-        searchedPackage = pkg
+      searchedPackage = pkg;
     }
 
     function onUploadStarted() {

@@ -6,40 +6,28 @@
   export let onSearchDone = null;
 
   let files;
-  let valid = false;
-  let validation = '';
+  const valid = false;
 
-  let searchString = '';
+  const searchString = '';
 
   const uploadClick = async () => {
     const file = files[0];
-    const jsonString = await file.text();
 
-    try {
-      validation = JSON.parse(jsonString);
-      valid = true;
-    } catch (e) {
-      valid = false;
-      alert('Please select a JSON file');
-    }
+    const ws = new WebSocket('ws://localhost:8080/scan');
 
-    if (valid === true) {
-      onUploadStarted();
-      fetch('http://localhost:8000/files/nodejs', {
-        method: 'POST',
-        body: jsonString,
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-        .then((response) => response.json())
-        .then((result) => {
-          onUploadDone(result);
-        })
-        .catch((error) => {
-          console.error('Error: ', error);
-        });
-    }
+    ws.onopen = (e) => {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+  
+      reader.onload = (e) => {
+        ws.send(e.target.result);
+      };
+    };
+
+    ws.onmessage = (e) => {
+      console.log(e);
+    };
   };
 
   const searchClick = async () => {
@@ -50,13 +38,13 @@
         'content-type': 'application/json'
       }
     })
-    .then((response) => response.json())
-    .then((result) => {
-      onSearchDone(result);
-    })
-    .catch((error) => {
-      console.error('Error: ', error);
-    });
+      .then((response) => response.json())
+      .then((result) => {
+        onSearchDone(result);
+      })
+      .catch((error) => {
+        console.error('Error: ', error);
+      });
   };
 </script>
 
