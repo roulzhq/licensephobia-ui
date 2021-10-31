@@ -21,7 +21,12 @@
       reader.readAsDataURL(file);
   
       reader.onload = (e) => {
-        ws.send(e.target.result);
+        const request = {
+          packageManager: 'npm',
+          data: e.target.result
+        };
+  
+        ws.send(JSON.stringify(request));
       };
     };
 
