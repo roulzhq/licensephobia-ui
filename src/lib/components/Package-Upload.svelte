@@ -60,6 +60,7 @@
   };
 </script>
 
+
 <div class="package-search">
   <input type="search" id="searchPkg" name="searchPkg" placeholder="SEARCH PACKAGE" value="{searchString}"/>
 

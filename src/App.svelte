@@ -18,10 +18,13 @@
 </div>
 
 <style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
   #app {
     display: grid;
     grid-template-rows: 40px 1fr;
     background-color: #f5f6fa;
+    font-family: 'Roboto', sans-serif;
 
     height: 100vh;
     width: 100vw;

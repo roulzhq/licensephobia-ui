@@ -19,7 +19,7 @@
   //   }
 </script>
 
-<div class="package-viewer">
+<!-- <div class="package-viewer">
   {#each packageResult.packages as pkg}
   <div class="package">
     {#if pkg.found}
@@ -36,6 +36,14 @@
     <div class="package-not-found">The package could not be found...</div>
     {/if}
   </div>
+  {/each}
+</div> -->
+
+<h1>Your package.json</h1>
+
+<div class="package-viewer">
+  {#each packageResult.packages as pkg}
+  <PackageTile versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile>
   {/each}
 </div>
 
