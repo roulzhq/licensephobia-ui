@@ -1,7 +1,25 @@
 <script>
   import PackageTile from '../components/Package-Tile.svelte';
+  import PackageDetail from '../components/Package-Detail.svelte';
   // eslint-disable-next-line import/no-mutable-exports
   export let packageResult = null;
+
+  let versionText;
+  let licenseText;
+  let titleText;
+  let descText;
+  let tileClicked = false;
+
+  function goToDetail(version, license, title, desc) {
+    tileClicked = true;
+    console.log("Clicked");
+    versionText = version;
+    licenseText = license;
+    titleText = title;
+    descText = desc;
+    
+
+  }
 
   //     export interface PackageResult {
   //     found: boolean;
@@ -19,33 +37,19 @@
   //   }
 </script>
 
-<!-- <div class="package-viewer">
-  {#each packageResult.packages as pkg}
-  <div class="package">
-    {#if pkg.found}
-    <div class="package-name">{pkg.name}</div>
-    <div class="package-description">{pkg.description}</div>
-    <a href="{pkg.url}" target="_blank" rel="noopener noreferrer">Visit website</a>
-    <div class="package-license">
-      License:
-      <a href="https://choosealicense.com/licenses/{pkg.license.type}" rel="noopener noreferrer">
-        {pkg.license.type}
-      </a>
-    </div>
-    {:else}
-    <div class="package-not-found">The package could not be found...</div>
-    {/if}
-  </div>
-  {/each}
-</div> -->
+{#if tileClicked}
+<PackageDetail packageTitle="{titleText}" packageType="{licenseText}" packageVersion="{versionText}" packageDescription="{descText}"></PackageDetail>
 
+{:else}
 <h1>Your package.json</h1>
 
 <div class="package-viewer">
   {#each packageResult.packages as pkg}
-  <PackageTile versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile>
+  <!-- <PackageTile on:click="{getTileClick(pkg.version.used, pkg.license.type, pkg.name, pkg.description)}" versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile> -->
+  <PackageTile on:click={() => goToDetail(versionText, licenseTag, pkgName, sloganText)} versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile>
   {/each}
 </div>
+{/if}
 
 <style>
   .package-viewer {
@@ -68,4 +72,5 @@
   .package-viewer .package .package-description {
     margin-bottom: 8px;
   }
+
 </style>

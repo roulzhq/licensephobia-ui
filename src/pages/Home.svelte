@@ -8,6 +8,7 @@
     let scanningStarted = false;
     let scanningCompleted = false;
 
+
     function onUploadDone(pkg) {
       scannedPackage = pkg;
       scanningCompleted = true;
@@ -20,11 +21,13 @@
     function onUploadStarted() {
       scanningStarted = true;
     }
+
+    
 </script>
 
 <div class="home">
     {#if !scanningStarted}
-        <PackageUpload onUploadStarted={onUploadStarted} onUploadDone={onUploadDone}></PackageUpload>
+        <PackageUpload class="package-upload-view" onUploadStarted={onUploadStarted} onUploadDone={onUploadDone}></PackageUpload>
     {/if}
 
     {#if scanningStarted && !scanningCompleted}
@@ -34,6 +37,7 @@
     {#if scanningStarted && scanningCompleted}
         <PackageViewer packageResult={scannedPackage}></PackageViewer>
     {/if}
+
 </div>
 
 <style>
@@ -42,5 +46,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background: linear-gradient(
+            112deg,
+            #ffffff 0%,
+            #ffffff 55%,
+            #00FFC2 55%,
+            #00FFC2 100%
+        );
+    }
+
+    .package-upload-view {
+        height: 100vh;
+        
     }
 </style>

@@ -31,6 +31,10 @@
     margin-right: 17px;
 }
 
+.package-tile:hover {
+    box-shadow: 8px 8px 16px 0px #000000;
+}
+
 .ver-text {
     grid-column: 1;
     grid-row: 1;
