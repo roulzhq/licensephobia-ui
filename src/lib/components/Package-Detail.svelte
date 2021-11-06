@@ -12,7 +12,7 @@
         <h1>{packageTitle}</h1>
         <p>{packageType}</p>
         <p>{packageVersion}</p>
-        <a>{packageLink}</a>
+        <a href="{packageLink}">{packageLink}</a>
         <p>{packageDescription}</p>
     </div>
 </div>

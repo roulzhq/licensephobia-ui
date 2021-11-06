@@ -3,6 +3,7 @@
     export let licenseTag = 'MIT';
     export let pkgName = '@angular/core';
     export let sloganText = 'Angular: The core framework';
+    export let linkURL = '';
     export let licenseReadable = true;
 </script>
 
@@ -13,7 +14,7 @@
     </div>
     <h2>{pkgName}</h2>
     <p class="slogan-text">{sloganText}</p>
-    <a>Visit website</a>
+    <a href="{linkURL}" target="_blank">Visit website</a>
     <button>More details</button>
 </div>
 
