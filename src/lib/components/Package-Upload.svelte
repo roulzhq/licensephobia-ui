@@ -1,63 +1,78 @@
 <script>
+  import { packages } from "../../store";
   /* eslint-disable-next-line import/no-mutable-exports */
   export let onUploadStarted = null;
   /* eslint-disable-next-line import/no-mutable-exports */
   export let onUploadDone = null;
-  export let onSearchDone = null;
 
   let files;
   const valid = false;
 
-  const searchString = '';
+  const searchString = "";
+
+  const addPackage = (pkg) => {
+    $packages = [...$packages, pkg];
+  };
 
   const uploadClick = async () => {
+    onUploadStarted();
     const file = files[0];
 
-    const ws = new WebSocket('ws://localhost:8080/scan');
+    const ws = new WebSocket("ws://localhost:8080/scan");
 
     ws.onopen = (e) => {
       const reader = new FileReader();
 
       reader.readAsDataURL(file);
-  
+
       reader.onload = (e) => {
         const request = {
-          packageManager: 'npm',
-          data: e.target.result
+          packageManager: "npm",
+          data: e.target.result,
         };
-  
+
         ws.send(JSON.stringify(request));
       };
     };
 
     ws.onmessage = (e) => {
-      console.log(e);
+      const res = JSON.parse(e.data);
+      addPackage(res);
+    };
+
+    ws.onclose = (e) => {
+      console.log("websocket closed");
     };
   };
 
   const searchClick = async () => {
-    fetch('http://localhost:8000/search/npm', {
-      method: 'POST',
+    fetch("http://localhost:8000/search/npm", {
+      method: "POST",
       body: searchString,
       headers: {
-        'content-type': 'application/json'
-      }
+        "content-type": "application/json",
+      },
     })
       .then((response) => response.json())
       .then((result) => {
         onSearchDone(result);
       })
       .catch((error) => {
-        console.error('Error: ', error);
+        console.error("Error: ", error);
       });
   };
 </script>
 
-
 <div class="package-search">
-  <input type="search" id="searchPkg" name="searchPkg" placeholder="SEARCH PACKAGE" value="{searchString}"/>
+  <input
+    type="search"
+    id="searchPkg"
+    name="searchPkg"
+    placeholder="SEARCH PACKAGE"
+    value="{searchString}"
+  />
 
-  <button on:click ="{searchClick}">SEARCH</button>
+  <button on:click="{searchClick}">SEARCH</button>
 </div>
 
 <div class="package-upload">
@@ -87,7 +102,8 @@
     height: 60px;
   }
 
-  input, button {
+  input,
+  button {
     display: block;
     position: relative;
     width: 300px;
@@ -101,8 +117,9 @@
   button {
     width: 100px;
   }
-  
-  input:after, button:after {
+
+  input:after,
+  button:after {
     transition: 200ms all ease;
     background-color: #3c5ff4;
     line-height: 60px;
@@ -119,11 +136,11 @@
   }
 
   button:after {
-    content: "Upload"
+    content: "Upload";
   }
 
-  input:hover:after, button:hover:after {
+  input:hover:after,
+  button:hover:after {
     background-color: #4868f7;
   }
-
 </style>

@@ -1,4 +1,6 @@
 <script>
+  
+  import { packages } from '../../store';
   import PackageTile from './Package-Tile.svelte';
   import PackageDetail from './Package-Detail.svelte';
   // eslint-disable-next-line import/no-mutable-exports
@@ -10,6 +12,10 @@
   let descText;
   let linkText;
   let tileClicked = false;
+
+  packages.subscribe((data) => {
+    console.log(data);
+  });
 
   function goToDetail(version, license, title, desc, link) {
     tileClicked = true;
@@ -44,7 +50,7 @@
 <h1 class="package-viewer-headline">Your package.json</h1>
 
 <div class="package-viewer-body">
-  {#each packageResult.packages as pkg}
+  {#each $packages as pkg}
   <div on:click={(e) => goToDetail(pkg.version.used, pkg.license.type, pkg.name, pkg.description, pkg.url)}>
     <PackageTile versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}" linkURL="{pkg.url}"></PackageTile>
   </div>
