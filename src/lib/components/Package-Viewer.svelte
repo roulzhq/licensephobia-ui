@@ -1,6 +1,6 @@
 <script>
-  import PackageTile from '../components/Package-Tile.svelte';
-  import PackageDetail from '../components/Package-Detail.svelte';
+  import PackageTile from './Package-Tile.svelte';
+  import PackageDetail from './Package-Detail.svelte';
   // eslint-disable-next-line import/no-mutable-exports
   export let packageResult = null;
 
@@ -12,13 +12,11 @@
 
   function goToDetail(version, license, title, desc) {
     tileClicked = true;
-    console.log("Clicked");
+    console.log('Clicked');
     versionText = version;
     licenseText = license;
     titleText = title;
     descText = desc;
-    
-
   }
 
   //     export interface PackageResult {
@@ -45,8 +43,9 @@
 
 <div class="package-viewer">
   {#each packageResult.packages as pkg}
-  <!-- <PackageTile on:click="{getTileClick(pkg.version.used, pkg.license.type, pkg.name, pkg.description)}" versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile> -->
-  <PackageTile on:click={() => goToDetail(versionText, licenseTag, pkgName, sloganText)} versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile>
+  <div on:click={(e) => goToDetail(pkg.versionText, pkg.licenseTag, pkg.pkgName, pkg.sloganText)}>
+    <PackageTile versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}"></PackageTile>
+  </div>
   {/each}
 </div>
 {/if}

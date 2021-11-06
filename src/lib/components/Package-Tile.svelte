@@ -1,8 +1,8 @@
 <script>
-    export let versionText = "12.0.1"
-    export let licenseTag = "MIT"
-    export let pkgName = "@angular/core"
-    export let sloganText = "Angular: The core framework"
+    export let versionText = '12.0.1';
+    export let licenseTag = 'MIT';
+    export let pkgName = '@angular/core';
+    export let sloganText = 'Angular: The core framework';
     export let licenseReadable = true;
 </script>
 
