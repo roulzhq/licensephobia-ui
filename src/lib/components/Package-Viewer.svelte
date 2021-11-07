@@ -1,8 +1,7 @@
 <script>
-  
-  import { packages } from '../../store';
-  import PackageTile from './Package-Tile.svelte';
-  import PackageDetail from './Package-Detail.svelte';
+  import { packages } from "../../store";
+  import PackageTile from "./Package-Tile.svelte";
+  import PackageDetail from "./Package-Detail.svelte";
   // eslint-disable-next-line import/no-mutable-exports
   export let packageResult = null;
 
@@ -43,54 +42,52 @@
 </script>
 
 {#if tileClicked}
-<PackageDetail packageTitle="{titleText}" packageType="{licenseText}" packageVersion="{versionText}" packageDescription="{descText}" packageLink="{linkText}"></PackageDetail>
+<PackageDetail
+  packageTitle="{titleText}"
+  packageType="{licenseText}"
+  packageVersion="{versionText}"
+  packageDescription="{descText}"
+  packageLink="{linkText}"
+></PackageDetail>
 
 {:else}
 <div class="package-viewer">
-<h1 class="package-viewer-headline">Your package.json</h1>
+  <h1 class="package-viewer-headline">Your package.json</h1>
 
-<div class="package-viewer-body">
-  {#each $packages as pkg}
-  <div on:click={(e) => goToDetail(pkg.version.used, pkg.license.type, pkg.name, pkg.description, pkg.url)}>
-    <PackageTile versionText="{pkg.version.used}" licenseTag="{pkg.license.type}" pkgName="{pkg.name}" sloganText="{pkg.description}" linkURL="{pkg.url}"></PackageTile>
+  <div class="package-viewer-body">
+    {#each $packages as pkg}
+    <PackageTile
+      versionText="{pkg.version.used}"
+      licenseTag="{pkg.license.type}"
+      pkgName="{pkg.name}"
+      sloganText="{pkg.description}"
+      linkURL="{pkg.url}"
+    ></PackageTile>
+    {/each}
   </div>
-  {/each}
-</div>
 </div>
 {/if}
 
 <style>
-
-
   .package-viewer {
-    display:grid;
-    grid-template-rows: 1f 5fr;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    height: 100%;
+    width: 80%;
+    padding: 50px 0;
   }
 
   .package-viewer-headline {
-    grid-row: 1;
+    display: flex;
+    align-items: center;
   }
 
   .package-viewer-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-rows: 200px;
     gap: 10px;
-    grid-row: 2;
+    overflow: auto;
+    padding: 20px 0;
   }
-
-  .package-viewer-body .package {
-    background-color: #fefefe;
-    box-shadow: 4px 4px 4px #21212144;
-    padding: 10px;
-  }
-
-  .package-viewer-body .package .package-name {
-    font-weight: bold;
-  }
-
-  .package-viewer-body .package .package-description {
-    margin-bottom: 8px;
-  }
-
 </style>

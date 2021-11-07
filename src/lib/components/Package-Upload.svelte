@@ -2,13 +2,8 @@
   import { packages } from "../../store";
   /* eslint-disable-next-line import/no-mutable-exports */
   export let onUploadStarted = null;
-  /* eslint-disable-next-line import/no-mutable-exports */
-  export let onUploadDone = null;
 
   let files;
-  const valid = false;
-
-  const searchString = "";
 
   const addPackage = (pkg) => {
     $packages = [...$packages, pkg];
@@ -44,36 +39,7 @@
       console.log("websocket closed");
     };
   };
-
-  const searchClick = async () => {
-    fetch("http://localhost:8000/search/npm", {
-      method: "POST",
-      body: searchString,
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        onSearchDone(result);
-      })
-      .catch((error) => {
-        console.error("Error: ", error);
-      });
-  };
 </script>
-
-<div class="package-search">
-  <input
-    type="search"
-    id="searchPkg"
-    name="searchPkg"
-    placeholder="SEARCH PACKAGE"
-    value="{searchString}"
-  />
-
-  <button on:click="{searchClick}">SEARCH</button>
-</div>
 
 <div class="package-upload">
   <input
@@ -95,13 +61,6 @@
     height: 60px;
   }
 
-  .package-search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
-  }
-
   input,
   button {
     display: block;
@@ -114,16 +73,25 @@
     outline: 0;
   }
 
+  input {
+    border-radius: 10px 0 0 10px;
+  }
+
   button {
     width: 100px;
+  }
+
+  input:after {
+    border-radius: 10px 0 0 10px;
   }
 
   input:after,
   button:after {
     transition: 200ms all ease;
-    background-color: #3c5ff4;
+    background-color: #fcfcfc;
+    border: 1px solid #afafaf;
     line-height: 60px;
-    color: #fff;
+    color: #252525;
     font-size: 1.5em;
     text-align: center;
     position: absolute;
@@ -137,10 +105,11 @@
 
   button:after {
     content: "Upload";
+    border-radius: 0px 10px 10px 0;
   }
 
   input:hover:after,
   button:hover:after {
-    background-color: #4868f7;
+    background-color: #f1f1f1;
   }
 </style>
