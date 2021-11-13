@@ -49,7 +49,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		align-items: center;
 		flex-flow: column;
 
 		h1 {
