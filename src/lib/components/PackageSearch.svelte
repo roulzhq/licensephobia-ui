@@ -91,6 +91,7 @@
 		align-items: center;
 		height: 60px;
 		position: relative;
+		z-index: 1;
 
 		.preview {
 			position: absolute;
