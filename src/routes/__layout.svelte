@@ -13,6 +13,7 @@
 <style lang="scss">
 	main {
 		height: 100vh;
+		width: 100vw;
 		margin: auto;
 	}
 

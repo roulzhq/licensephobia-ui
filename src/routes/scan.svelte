@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	.package-viewer {
 		display: grid;
 		grid-template-rows: 1fr 5fr;
@@ -27,21 +27,21 @@
 		width: 80%;
 		padding: 50px 0;
 		margin: auto;
-	}
 
-	.package-viewer-headline {
-		display: flex;
-		align-items: center;
-	}
+		&-headline {
+			display: flex;
+			align-items: center;
+		}
 
-	.package-viewer-body {
-		position: relative;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-auto-rows: 100px;
-		gap: 10px;
-		padding: 20px 0;
-		overflow-x: hidden;
-		overflow-y: auto;
+		&-body {
+			position: relative;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-auto-rows: 100px;
+			gap: 10px;
+			padding: 0 10px 0 0;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
 	}
 </style>
