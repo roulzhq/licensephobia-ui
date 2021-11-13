@@ -10,16 +10,15 @@
 	@import '../../mixins.scss';
 
 	button {
-		width: 10%;
+		width: 100px;
 		height: 100%;
 		border: none;
-		margin-top: 1%;
-		background: #00ffc2;
+		background: #04f5bd;
 
 		@include transition-smooth();
 
 		&:hover {
-			background: #00ff557e;
+			background: #00ffc3;
 		}
 	}
 </style>
