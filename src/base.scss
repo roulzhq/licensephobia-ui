@@ -24,6 +24,7 @@ body {
 button {
 	background: #f2f2f2;
 	cursor: pointer;
+	border: none;
 
 	@include transition-smooth();
 

@@ -2,6 +2,7 @@
 	import type { PackageManager } from 'src/types';
 	import { page } from '$app/stores';
 	import { get } from 'svelte/store';
+	import BackButton from '$lib/components/BackButton.svelte';
 
 	function getPackageDetails(pkg: string) {
 		console.log(pkg);
@@ -27,6 +28,7 @@
 </svelte:head>
 
 <div class="package-detail page">
+	<BackButton />
 	<h1>Details:</h1>
 
 	<div>
