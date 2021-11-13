@@ -56,6 +56,7 @@
 			display: flex;
 			flex-flow: row;
 			justify-content: center;
+			align-items: center;
 		}
 
 		.actions {
