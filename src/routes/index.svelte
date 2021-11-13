@@ -3,57 +3,59 @@
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import PackageUpload from '$lib/components/PackageUpload.svelte';
+	import PackageSearch from '$lib/components/PackageSearch.svelte';
 </script>
 
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
 
-<section>
+<div class="home">
 	<h1>
-		<div class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</div>
-
-		to your new<br />SvelteKit app
+		Don't be afraid of your
+		<span class="package-manager-badge">Nodejs</span> licenses anymore!
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
+	<div class="actions">
+		<PackageSearch />
+		<span>or</span>
+		<PackageUpload />
+	</div>
+</div>
 
 <style>
-	section {
+	.home {
+		height: 100%;
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 1;
+		flex-flow: column;
 	}
-
 	h1 {
-		width: 100%;
+		margin-bottom: 200px;
+		z-index: 1;
 	}
 
-	.welcome {
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
+	.actions {
+		display: flex;
+		justify-content: space-between;
+		width: 50%;
+		align-items: center;
 	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	.actions span {
+		box-shadow: 3px 2px 6px 2px #21212144;
+		padding: 6px 20px;
+		border-radius: 25px;
+		background-color: #fefefe;
+	}
+	.package-manager-badge {
+		vertical-align: middle;
+		box-shadow: 3px 2px 6px 2px #21212144;
+		border-radius: 25px;
+		font-size: 16px;
+		padding: 6px 20px;
+		margin: 0 16px;
+		background-color: #fefefe;
 	}
 </style>

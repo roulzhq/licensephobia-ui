@@ -1,45 +1,29 @@
 <script lang="ts">
-	import Header from '$lib/header/Header.svelte';
-	import '../app.css';
+	import Nav from '$lib/Nav.svelte';
+	import '../app.scss';
 </script>
 
-<Header />
+<Nav />
 
+<div class="background-gradient" />
 <main>
 	<slot />
 </main>
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
-
-<style>
+<style lang="scss">
 	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
+		height: 100vh;
+		margin: auto;
 	}
 
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
+	.background-gradient {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 50%;
+		height: 100%;
+		z-index: -1;
+		clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
+		background: linear-gradient(#00ff557e 0%, #00ffc2 100%);
 	}
 </style>
