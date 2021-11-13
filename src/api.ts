@@ -1,4 +1,4 @@
-import type { PackageResult } from "./types";
+import type { PackageResult } from './types';
 import { packages } from './store';
 
 export async function scanPackage(file: File) {
