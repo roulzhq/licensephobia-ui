@@ -4,22 +4,27 @@
 	import { get } from 'svelte/store';
 
 	function getPackageDetails(pkg: string) {
-		const parts = pkg.split('/');
+		console.log(pkg);
 
-		if (parts.length === 2) {
-			const packageManager: PackageManager = parts[0] as PackageManager;
-			const packageName = parts[1];
+		// A rather hacky solution to only split the string once by a slash.
+		// Package names can still contain slashes, and we want to allow them in the URL unescaped for now, I guess.
+		// Internally, the URLs will be escaped tho
+		const parts = pkg.split(/\/(.+)/);
 
-			return { packageManager, packageName };
-		}
+		const packageManager: PackageManager = parts[0] as PackageManager;
+		const packageName = parts[1];
 
-		throw new Error('Could not ');
+		return { packageManager, packageName };
 	}
 
 	const currentPage = get(page);
 
 	const packageDetails = getPackageDetails(currentPage.params.package);
 </script>
+
+<svelte:head>
+	<title>Package details | Licensephobia</title>
+</svelte:head>
 
 <div class="package-detail page">
 	<h1>Details:</h1>

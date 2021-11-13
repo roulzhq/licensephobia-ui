@@ -3,12 +3,31 @@
 </script>
 
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
+	import { scanPackage } from '../api';
+	import { scanning } from '../store';
+
 	import PackageUpload from '$lib/components/PackageUpload.svelte';
 	import PackageSearch from '$lib/components/PackageSearch.svelte';
+
+	function onUploadStarted(files: File[]) {
+		const file = files[0];
+
+		scanning.set(true);
+		scanPackage(file);
+		goto('/scan');
+	}
+
+	function onPackageSearched(search: string) {
+		const packageName = encodeURIComponent(search);
+
+		goto(`/package/npm/${packageName}`);
+	}
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Home | Licensephobia</title>
 </svelte:head>
 
 <div class="home">
@@ -18,9 +37,9 @@
 	</h1>
 
 	<div class="actions">
-		<PackageSearch />
+		<PackageSearch onSearch={onPackageSearched} />
 		<span>or</span>
-		<PackageUpload />
+		<PackageUpload onFileUploaded={onUploadStarted} />
 	</div>
 </div>
 

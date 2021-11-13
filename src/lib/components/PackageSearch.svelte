@@ -1,31 +1,31 @@
-<script>
-	const valid = false;
-	const searchString = '';
-	const searchClick = async () => {
-		fetch('http://localhost:8000/search/npm', {
-			method: 'POST',
-			body: searchString,
-			headers: {
-				'content-type': 'application/json'
-			}
-		})
-			.then((response) => response.json())
-			.catch((error) => {
-				console.error('Error: ', error);
-			});
+<script lang="ts">
+	export let onSearch = (search: string) => {};
+
+	let searchString = '';
+
+	const onSubmit = async () => {
+		onSearch(searchString);
+	};
+
+	const onInput = (e: Event) => {
+		searchString = (e.target as HTMLInputElement).value;
+	};
+
+	const onKeypress = (e) => {
+		if (e.charCode === 13) onSubmit();
 	};
 </script>
 
 <div class="package-search">
 	<input
-		type="search"
-		id="searchPkg"
-		name="searchPkg"
-		placeholder="SEARCH PACKAGE"
+		type="text"
 		value={searchString}
+		on:input={onInput}
+		on:keypress={onKeypress}
+		placeholder="Search package"
 	/>
 
-	<button on:click={searchClick}>SEARCH</button>
+	<button on:click={onSubmit}>SEARCH</button>
 </div>
 
 <style>

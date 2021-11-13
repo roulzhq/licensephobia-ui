@@ -1,6 +1,7 @@
 export interface PackageResult {
 	found: boolean;
 	name: string;
+	id: string;
 	description: string;
 	url: string;
 	version: {

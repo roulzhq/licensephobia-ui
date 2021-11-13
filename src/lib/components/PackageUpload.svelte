@@ -1,15 +1,10 @@
-<script>
-	import { goto } from '$app/navigation';
-
-	import { scanPackage } from '../../api';
+<script lang="ts">
+	export let onFileUploaded = (files: File[]) => {};
 
 	let files;
 
 	const uploadClick = async () => {
-		const file = files[0];
-
-		scanPackage(file);
-		goto('/scan');
+		onFileUploaded(files);
 	};
 </script>
 

@@ -1,7 +1,24 @@
-<script>
-	import { packages } from '../store';
-	import PackageTile from '$lib/components/PackageTile.svelte';
+<script context="module">
+	export const ssr = false;
 </script>
+
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import PackageTile from '$lib/components/PackageTile.svelte';
+	import { get } from 'svelte/store';
+
+	import { packages, scanning } from '../store';
+
+	console.log(scanning);
+
+	if (!get(scanning)) {
+		goto('/', { replaceState: true });
+	}
+</script>
+
+<svelte:head>
+	<title>Scan Results | Licensephobia</title>
+</svelte:head>
 
 <div class="package-viewer page">
 	<h1 class="package-viewer-headline">Your package.json</h1>
@@ -11,7 +28,8 @@
 			<PackageTile
 				versionText={pkg.version.used}
 				licenseTag={pkg.license.type}
-				pkgName={pkg.name}
+				name={pkg.name}
+				id={pkg.id}
 				description={pkg.description}
 				linkURL={pkg.url}
 			/>
@@ -32,7 +50,7 @@
 			grid-template-columns: repeat(3, 1fr);
 			grid-auto-rows: 120px;
 			gap: 10px;
-			padding: 0 10px 0 0;
+			padding: 10px;
 			overflow-x: hidden;
 			overflow-y: auto;
 		}

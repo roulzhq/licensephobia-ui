@@ -1,21 +1,27 @@
-<script>
+<script lang="ts">
 	import { fly } from 'svelte/transition';
+	import { goto } from '$app/navigation';
 
-	export let versionText = '12.0.1';
-	export let licenseTag = 'MIT';
-	export let pkgName = '@angular/core';
-	export let description = 'Angular: The core framework';
+	export let id = '';
+	export let name = '';
+	export let versionText = '';
+	export let licenseTag = '';
+	export let description = '';
 	export let linkURL = '';
+
+	function redirect() {
+		goto(`/package/npm/${id}`);
+	}
 </script>
 
-<div class="package-tile" in:fly={{ y: 50, duration: 800 }}>
+<div class="package-tile" in:fly={{ y: 50, duration: 800 }} on:click={redirect}>
 	<div class="package-tile-body">
 		<p class="ver-text">{versionText}</p>
-		<h2>{pkgName}</h2>
+		<h2>{name}</h2>
 		<p class="description">{description}</p>
 	</div>
 	<div class="package-tile-footer">
-		<a rel="external" href={linkURL} target="_blank">Visit website</a>
+		<a rel="external" href={linkURL} target="_blank">visit website</a>
 		<button>More details</button>
 	</div>
 
@@ -39,11 +45,6 @@
 		.package-tile-body {
 			.package-tile:hover {
 				box-shadow: 3px 2px 6px 2px #00000044;
-			}
-
-			.package-tile-footer {
-				display: flex;
-				justify-content: space-between;
 			}
 
 			.ver-text {
@@ -70,17 +71,14 @@
 		}
 
 		.package-tile-footer {
-			a {
-				text-decoration: underline;
-				font-size: 13px;
-				margin: 0;
-			}
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 
 			button {
-				margin-right: 12%;
 				border: 0px;
 				font-size: 13px;
-				margin: 0;
+				padding: 6px;
 			}
 		}
 	}
