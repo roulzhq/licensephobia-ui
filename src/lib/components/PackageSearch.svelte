@@ -41,7 +41,6 @@
 		position: relative;
 		width: 300px;
 		margin: auto;
-		cursor: pointer;
 		border: 0;
 		height: 60px;
 		outline: 0;
@@ -49,9 +48,11 @@
 	input {
 		border-radius: 10px 0 0 10px;
 		padding: 0 0 0 16px;
+		cursor: text;
 	}
 	button {
 		width: 100px;
+		cursor: pointer;
 	}
 	input:after {
 		border-radius: 10px 0 0 10px;
