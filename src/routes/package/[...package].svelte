@@ -27,6 +27,7 @@
 	import { PackageManager } from '../../types';
 	import { page } from '$app/stores';
 	import { get } from 'svelte/store';
+	import BackButton from '$lib/components/BackButton.svelte';
 
 	const error: string = '';
 
@@ -59,6 +60,7 @@
 </svelte:head>
 
 <div class="package-detail page">
+	<BackButton />
 	<h1>Details:</h1>
 
 	<div>

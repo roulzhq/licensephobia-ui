@@ -3,6 +3,7 @@
 </script>
 
 <script lang="ts">
+	import BackButton from '$lib/components/BackButton.svelte';
 	import { goto } from '$app/navigation';
 	import PackageTile from '$lib/components/PackageTile.svelte';
 	import { get } from 'svelte/store';
@@ -21,6 +22,7 @@
 </svelte:head>
 
 <div class="package-viewer page">
+	<BackButton />
 	<h1 class="package-viewer-headline">Your package.json</h1>
 
 	<div class="package-viewer-body">
