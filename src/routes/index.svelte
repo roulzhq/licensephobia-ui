@@ -53,7 +53,9 @@
 
 		h1 {
 			margin-bottom: 200px;
-			z-index: 1;
+			display: flex;
+			flex-flow: row;
+			justify-content: center;
 		}
 
 		.actions {
@@ -78,6 +80,26 @@
 			padding: 6px 20px;
 			margin: 0 16px;
 			background-color: #fefefe;
+		}
+		@media (max-width: 1024px) {
+			.actions {
+				flex-flow: column;
+				align-items: center;
+				transform: scale(0.8);
+
+				span {
+					margin: 16px 0;
+				}
+			}
+		}
+
+		@media (max-width: 700px) {
+			h1 {
+				flex-flow: column;
+				align-items: center;
+
+				margin-bottom: 100px;
+			}
 		}
 	}
 </style>
