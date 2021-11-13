@@ -1,18 +1,64 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	export let onSearch = (search: string) => {};
 
 	let searchString = '';
+	let preview = [];
+	let socket;
+
+	onMount(() => {
+		socket = new WebSocket('ws://localhost:8080/search');
+
+		socket.onopen = () => {
+			console.log('open');
+		};
+
+		socket.onmessage = (e) => {
+			const data: { name: string }[] = JSON.parse(e.data);
+
+			preview = data.map((i) => i.name);
+		};
+
+		socket.onclose = (e) => {
+			console.log(e);
+		};
+	});
 
 	const onSubmit = async () => {
+		socket.close();
 		onSearch(searchString);
 	};
 
+	function debounce(func, timeout = 200) {
+		let timer;
+
+		return (...args) => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				func.apply(this, args);
+			}, timeout);
+		};
+	}
+
 	const onInput = (e: Event) => {
 		searchString = (e.target as HTMLInputElement).value;
+
+		const request = {
+			packageManager: 'npm',
+			data: searchString
+		};
+
+		socket.send(JSON.stringify(request));
 	};
 
 	const onKeypress = (e) => {
 		if (e.charCode === 13) onSubmit();
+	};
+
+	const search = (search) => {
+		searchString = search;
+		onSubmit();
 	};
 </script>
 
@@ -20,20 +66,55 @@
 	<input
 		type="text"
 		value={searchString}
-		on:input={onInput}
+		on:input={debounce(onInput)}
 		on:keypress={onKeypress}
 		placeholder="Search package"
 	/>
 
 	<button on:click={onSubmit}>SEARCH</button>
+
+	{#if preview.length !== 0}
+		<div class="preview">
+			<ul>
+				{#each preview as item}
+					<li on:click={search(item)}>{item}</li>
+				{/each}
+			</ul>
+		</div>
+	{/if}
 </div>
 
-<style>
+<style lang="scss">
 	.package-search {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		height: 60px;
+		position: relative;
+
+		.preview {
+			position: absolute;
+			width: 100%;
+			bottom: -5px;
+			transform: translateY(100%);
+			background: #fefefe;
+			box-shadow: 3px 2px 6px 2px #21212144;
+
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+
+				li {
+					padding: 8px;
+					cursor: pointer;
+
+					&:hover {
+						background-color: #fafafa;
+					}
+				}
+			}
+		}
 	}
 	input,
 	button {

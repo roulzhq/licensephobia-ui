@@ -1,16 +1,10 @@
-<script context="module">
-	export const load = async ({ page }) => ({
-		props: {
-			key: page.path
-		}
-	});
-</script>
-
 <script lang="ts">
 	import Nav from '$lib/Nav.svelte';
 	import PageTransition from '$lib/components/PageTransition.svelte';
+
 	import '../app.scss';
-	export let key;
+
+	export let key: string;
 </script>
 
 <Nav />
@@ -39,5 +33,9 @@
 		z-index: -1;
 		clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
 		background: linear-gradient(#00ff557e 0%, #00ffc2 100%);
+	}
+
+	.error-gradient {
+		background: linear-gradient(#ff00007e 0%, #ff3300 100%);
 	}
 </style>
