@@ -32,7 +32,7 @@
 
 <style lang="scss">
 	.package-tile {
-		background-color: #ffffff;
+		background-color: #fcfcfc;
 		border-radius: 6px;
 		display: grid;
 		grid-template-columns: 100%;
@@ -43,6 +43,11 @@
 		position: relative;
 		padding: 8px;
 		overflow: hidden;
+
+		&:hover {
+			box-shadow: 3px 2px 6px 2px #00000044;
+			background-color: #ffffff;
+		}
 
 		.package-tile-body {
 			.package-tile:hover {
