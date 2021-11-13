@@ -15,7 +15,7 @@
 		<p class="description">{description}</p>
 	</div>
 	<div class="package-tile-footer">
-		<a href={linkURL} target="_blank">Visit website</a>
+		<a rel="external" href={linkURL} target="_blank">Visit website</a>
 		<button>More details</button>
 	</div>
 

@@ -14,3 +14,9 @@ export interface PackageResult {
 }
 
 export type LicenseString = 'MIT' | 'GNU';
+
+export enum PackageManager {
+	NPM = "npm",
+	PIP = "pip",
+	CARGO = "cargo",
+}

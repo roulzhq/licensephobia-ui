@@ -1,13 +1,25 @@
+<script context="module">
+	export const load = async ({ page }) => ({
+		props: {
+			key: page.path
+		}
+	});
+</script>
+
 <script lang="ts">
 	import Nav from '$lib/Nav.svelte';
+	import PageTransition from '$lib/components/PageTransition.svelte';
 	import '../app.scss';
+	export let key;
 </script>
 
 <Nav />
 
 <div class="background-gradient" />
 <main>
-	<slot />
+	<PageTransition refresh={key}>
+		<slot />
+	</PageTransition>
 </main>
 
 <style lang="scss">
@@ -15,6 +27,7 @@
 		height: 100vh;
 		width: 100vw;
 		margin: auto;
+		overflow: hidden;
 	}
 
 	.background-gradient {

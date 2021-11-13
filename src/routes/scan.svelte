@@ -3,7 +3,7 @@
 	import PackageTile from '$lib/components/PackageTile.svelte';
 </script>
 
-<div class="package-viewer">
+<div class="package-viewer page">
 	<h1 class="package-viewer-headline">Your package.json</h1>
 
 	<div class="package-viewer-body">
@@ -21,13 +21,6 @@
 
 <style lang="scss">
 	.package-viewer {
-		display: grid;
-		grid-template-rows: 1fr 5fr;
-		height: 100%;
-		width: 80%;
-		padding: 50px 0;
-		margin: auto;
-
 		&-headline {
 			display: flex;
 			align-items: center;
@@ -37,11 +30,23 @@
 			position: relative;
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
-			grid-auto-rows: 100px;
+			grid-auto-rows: 120px;
 			gap: 10px;
 			padding: 0 10px 0 0;
 			overflow-x: hidden;
 			overflow-y: auto;
+		}
+
+		@media (max-width: 1024px) {
+			.package-viewer-body {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		@media (max-width: 540px) {
+			.package-viewer-body {
+				grid-template-columns: repeat(1, 1fr);
+			}
 		}
 	}
 </style>
