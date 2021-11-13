@@ -1,0 +1,10 @@
+@import './base.scss';
+
+.page {
+	display: grid;
+	grid-template-rows: 1fr 5fr;
+	height: 100%;
+	width: 80%;
+	padding: 50px 0;
+	margin: auto;
+}
