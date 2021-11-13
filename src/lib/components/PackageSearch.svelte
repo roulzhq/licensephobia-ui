@@ -26,6 +26,7 @@
 	});
 
 	const onSubmit = async () => {
+		socket.close();
 		onSearch(searchString);
 	};
 
