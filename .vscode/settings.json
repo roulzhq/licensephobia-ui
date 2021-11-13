@@ -1,13 +1,7 @@
 {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": true,
-    "files.associations": {
-        "*.svelte": "html"
-    },
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "html"
-    ],
-    "files.eol": "\n",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"eslint.validate": ["javascript", "typescript", "html", "svelte"],
+	"editor.tabSize": 2,
+	"files.eol": "\n"
 }

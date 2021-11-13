@@ -1,0 +1,19 @@
+<!-- PageTransition.svelte -->
+<script>
+	import { fade } from 'svelte/transition';
+	export let refresh = '';
+</script>
+
+{#key refresh}
+	<div transition:fade={{ duration: 200 }}>
+		<slot />
+	</div>
+{/key}
+
+<style lang="scss">
+	div {
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+</style>
