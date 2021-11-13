@@ -21,7 +21,9 @@
 		<p class="description">{description}</p>
 	</div>
 	<div class="package-tile-footer">
-		<a rel="external" href={linkURL} target="_blank">visit website</a>
+		<a rel="external" href={linkURL} target="_blank" on:click={(e) => e.stopPropagation()}>
+			visit website
+		</a>
 		<button>More details</button>
 	</div>
 
