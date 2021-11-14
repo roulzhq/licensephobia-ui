@@ -108,4 +108,12 @@
 		height: 70%;
 		width: 100%;
 	}
+
+	.package-header a {
+		margin-top: 22px;
+	}
+
+	.package-header p {
+		margin-top: 22px;
+	}
 </style>
