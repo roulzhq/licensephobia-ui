@@ -25,7 +25,7 @@
 </script>
 
 <script lang="ts">
-	import { PackageManager } from '../../types';
+	import { PackageManager, PackageResult } from '../../types';
 	import { page } from '$app/stores';
 	import { get } from 'svelte/store';
 	import BackButton from '$lib/components/BackButton.svelte';
@@ -58,7 +58,7 @@
 
 	const packageDetails = getPackageDetails(currentPage.params.package);
 
-	let searchedPackage = $packages.filter(function (iPackage) {
+	let searchedPackage: PackageResult[] = $packages.filter(function (iPackage) {
 		return iPackage.name == packageDetails.name;
 	});
 </script>
@@ -66,21 +66,21 @@
 <svelte:head>
 	<title>Package {packageDetails.name} | Licensephobia</title>
 </svelte:head>
-<!-- {#each $packages.get as iPackage}
-	{packageResults.push(iPackage)}
-	{console.log(packageResults)}
-{/each} -->
+
 <div class="package-detail page">
 	<BackButton />
-	<h1>Details:</h1>
 
 	<div class="package-details">
 		<h2>{packageDetails.name}</h2>
 		<p>{packageDetails.manager}</p>
 		<p>{searchedPackage[0].version.used}</p>
-		<p>{searchedPackage[0].url}</p>
+		<a
+			rel="external"
+			href={searchedPackage[0].url}
+			target="_blank"
+			on:click={(e) => e.stopPropagation()}>{searchedPackage[0].url}</a
+		>
 		<h4>{searchedPackage[0].description}</h4>
-		<!-- <p>{pkg.version.used}</p> -->
 	</div>
 	<div class="package-summary" />
 </div>
