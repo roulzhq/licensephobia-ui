@@ -31,9 +31,6 @@
 	import BackButton from '$lib/components/BackButton.svelte';
 
 	import { packages } from '../../store';
-	import { resourceLimits } from 'worker_threads';
-
-	const error: string = '';
 
 	function getPackageDetails(pkg: string) {
 		// A rather hacky solution to only split the string once by a slash.
@@ -58,9 +55,13 @@
 
 	const packageDetails = getPackageDetails(currentPage.params.package);
 
-	let searchedPackage: PackageResult[] = $packages.filter(function (iPackage) {
-		return iPackage.name == packageDetails.name;
-	});
+	let searchedPackage: PackageResult = $packages.find(
+		(element) => element.name == packageDetails.name
+	);
+
+	// let searchedPackage: PackageResult[] = $packages.filter(function (iPackage) {
+	// 	return iPackage.name == packageDetails.name;
+	// });
 </script>
 
 <svelte:head>
@@ -71,16 +72,16 @@
 	<BackButton />
 
 	<div class="package-details">
-		<h2>{packageDetails.name}</h2>
+		<h1>{packageDetails.name}</h1>
 		<p>{packageDetails.manager}</p>
-		<p>{searchedPackage[0].version.used}</p>
+		<p>{searchedPackage.version.used}</p>
 		<a
 			rel="external"
-			href={searchedPackage[0].url}
+			href={searchedPackage.url}
 			target="_blank"
-			on:click={(e) => e.stopPropagation()}>{searchedPackage[0].url}</a
+			on:click={(e) => e.stopPropagation()}>{searchedPackage.url}</a
 		>
-		<h4>{searchedPackage[0].description}</h4>
+		<h4>{searchedPackage.description}</h4>
 	</div>
 	<div class="package-summary" />
 </div>
@@ -88,7 +89,7 @@
 <style lang="scss">
 	.package-details {
 		display: grid;
-		grid-template-columns: 3fr 1fr 1fr 2fr;
+		grid-template-columns: 2fr 1fr 1fr 2fr;
 		grid-template-rows: 0.3fr 0.2fr;
 	}
 
