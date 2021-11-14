@@ -1,3 +1,11 @@
+<script context="module">
+	export const load = async ({ page }) => ({
+		props: {
+			key: page.path
+		}
+	});
+</script>
+
 <script lang="ts">
 	import Nav from '$lib/Nav.svelte';
 	import PageTransition from '$lib/components/PageTransition.svelte';
