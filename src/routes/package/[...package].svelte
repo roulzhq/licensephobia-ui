@@ -72,16 +72,20 @@
 		<BackButton />
 
 		<div class="package-details">
-			<h1>{searchedPackage.name}</h1>
-			<p>{packageDetails.manager}</p>
-			<p>{searchedPackage.version.used}</p>
-			<a
-				rel="external"
-				href={searchedPackage.url}
-				target="_blank"
-				on:click={(e) => e.stopPropagation()}>{searchedPackage.url}</a
-			>
-			<h4>{searchedPackage.description}</h4>
+			<div class="package-header">
+				<h1>{searchedPackage.name}</h1>
+				<p>{packageDetails.manager}</p>
+				<p>{searchedPackage.version}</p>
+				<a
+					rel="external"
+					href={searchedPackage.url}
+					target="_blank"
+					on:click={(e) => e.stopPropagation()}>{searchedPackage.url}</a
+				>
+			</div>
+			<div class="package-description">
+				<h4>{searchedPackage.description}</h4>
+			</div>
 		</div>
 		<div class="package-summary" />
 	</div>
@@ -92,8 +96,12 @@
 <style lang="scss">
 	.package-details {
 		display: grid;
-		grid-template-columns: 2fr 1fr 1fr 2fr;
 		grid-template-rows: 0.3fr 0.2fr;
+	}
+
+	.package-header {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr 1.5fr;
 	}
 
 	.package-summary {
