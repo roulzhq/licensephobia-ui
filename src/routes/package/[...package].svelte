@@ -28,9 +28,12 @@
 	import { PackageManager, PackageResult } from '../../types';
 	import { page } from '$app/stores';
 	import { get } from 'svelte/store';
+
 	import BackButton from '$lib/components/BackButton.svelte';
 
-	import { packages } from '../../store';
+	import { searchPackage } from '../../api';
+
+	let searchedPackage: PackageResult = null;
 
 	function getPackageDetails(pkg: string) {
 		// A rather hacky solution to only split the string once by a slash.
@@ -55,36 +58,36 @@
 
 	const packageDetails = getPackageDetails(currentPage.params.package);
 
-	let searchedPackage: PackageResult = $packages.find(
-		(element) => element.name == packageDetails.name
-	);
-
-	// let searchedPackage: PackageResult[] = $packages.filter(function (iPackage) {
-	// 	return iPackage.name == packageDetails.name;
-	// });
+	searchPackage(packageDetails.manager, packageDetails.name).then((res) => {
+		searchedPackage = res;
+	});
 </script>
 
 <svelte:head>
 	<title>Package {packageDetails.name} | Licensephobia</title>
 </svelte:head>
 
-<div class="package-detail page">
-	<BackButton />
+{#if searchedPackage}
+	<div class="package-detail page">
+		<BackButton />
 
-	<div class="package-details">
-		<h1>{packageDetails.name}</h1>
-		<p>{packageDetails.manager}</p>
-		<p>{searchedPackage.version.used}</p>
-		<a
-			rel="external"
-			href={searchedPackage.url}
-			target="_blank"
-			on:click={(e) => e.stopPropagation()}>{searchedPackage.url}</a
-		>
-		<h4>{searchedPackage.description}</h4>
+		<div class="package-details">
+			<h1>{searchedPackage.name}</h1>
+			<p>{packageDetails.manager}</p>
+			<p>{searchedPackage.version.used}</p>
+			<a
+				rel="external"
+				href={searchedPackage.url}
+				target="_blank"
+				on:click={(e) => e.stopPropagation()}>{searchedPackage.url}</a
+			>
+			<h4>{searchedPackage.description}</h4>
+		</div>
+		<div class="package-summary" />
 	</div>
-	<div class="package-summary" />
-</div>
+{:else}
+	loading...
+{/if}
 
 <style lang="scss">
 	.package-details {

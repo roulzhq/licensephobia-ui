@@ -8,7 +8,7 @@
 	let socket;
 
 	onMount(() => {
-		socket = new WebSocket('ws://localhost:8080/search');
+		socket = new WebSocket('ws://localhost:8080/searchPreview');
 
 		socket.onopen = () => {
 			console.log('open');
@@ -46,7 +46,7 @@
 
 		const request = {
 			packageManager: 'npm',
-			data: searchString
+			name: searchString
 		};
 
 		socket.send(JSON.stringify(request));
