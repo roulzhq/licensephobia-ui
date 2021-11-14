@@ -1,4 +1,4 @@
-import type { PackageResult } from './types';
+import type { PackageManager, PackageResult } from './types';
 import { packages } from './store';
 
 export async function scanPackage(file: File) {
@@ -26,4 +26,16 @@ export async function scanPackage(file: File) {
 	ws.onclose = (e) => {
 		console.log(e);
 	};
+}
+
+export async function searchPackage(packageManager: PackageManager, name: string): Promise<PackageResult> {
+	const url = `http://localhost:8080/search?packageManager=${packageManager}&name=${name}`;
+
+	const res = await fetch(url);
+
+	if(res.status === 200) {
+		return await res.json() as PackageResult;
+	} else {
+		throw new Error('Could not load the given package.')
+	}
 }
