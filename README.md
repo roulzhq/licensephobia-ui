@@ -1,20 +1,8 @@
-# create-svelte
+# Licensephobia - Don't be afraid of software licenses anymore!
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+[Licensephobia](https://licensephobia.com) is a tool that let's you easily search for NPM (and soon pip) packages to view the licenses. You can also upload your package files and see what restrictions apply to your project.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+Licensephobia is still in an alpha phase!
 
 ## Developing
 
@@ -36,3 +24,8 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+
+## About Licensephobia
+
+The Frontend is built with [SvelteKit](https://github.com/sveltejs/kit).
