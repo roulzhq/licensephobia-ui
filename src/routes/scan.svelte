@@ -55,7 +55,7 @@
 			grid-template-columns: repeat(3, 1fr);
 			grid-auto-rows: 120px;
 			gap: 10px;
-			padding: 10px;
+			padding: 0 10px 10px 10px;
 			margin-top: 15px;
 			overflow-x: hidden;
 			overflow-y: auto;
