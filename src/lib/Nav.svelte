@@ -37,5 +37,6 @@
 	img {
 		width: 2em;
 		height: 2em;
+		margin-bottom: -6px;
 	}
 </style>
