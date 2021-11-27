@@ -35,7 +35,7 @@
 	}
 
 	img {
-		width: 2.5em;
-		height: 2.5em;
+		width: 2em;
+		height: 2em;
 	}
 </style>
