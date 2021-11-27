@@ -12,6 +12,10 @@
 			<Tag type="success">Modification</Tag>
 			<Tag type="success">Patent use</Tag>
 			<Tag type="success">Private use</Tag>
+
+			<!-- 			{#each $summary.conditions.permissions as permission}
+				<Tag type="success">{permission}</Tag>
+			{/each} -->
 		</div>
 		<div class="overview-list-conditions">
 			<h3>Conditions</h3>
@@ -21,11 +25,19 @@
 			<Tag type="info">Network use is distribution</Tag>
 			<Tag type="info">Same license</Tag>
 			<Tag type="info">State changes</Tag>
+
+			<!--      {#each $summary.conditions.conditions as condition}
+				<Tag type="info">{condition}</Tag>
+			{/each} -->
 		</div>
 		<div class="overview-list-limitations">
 			<h3>Limitations</h3>
 			<Tag type="error">Liability</Tag>
 			<Tag type="error">Warranty</Tag>
+
+			<!-- {#each $summary.conditions.limitations as limitation}
+				<Tag type="error">{limitation}</Tag>
+			{/each} -->
 		</div>
 	</div>
 </div>
@@ -49,12 +61,6 @@
 		grid-row: 2;
 		grid-template-columns: 1fr 1fr 1fr;
 		padding-left: 1%;
-		&-permissions {
-		}
-		&-conditions {
-		}
-		&-limitations {
-		}
 	}
 	.overview {
 		display: grid;

@@ -11,7 +11,7 @@
 		border-radius: 12px;
 		border-width: 1px;
 		border-style: solid;
-		font-size: 10px;
+		font-size: 11px;
 		padding: 4px 10px;
 		display: inline-block;
 		margin: 2.5px;
