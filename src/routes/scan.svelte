@@ -7,6 +7,7 @@
 	import { goto } from '$app/navigation';
 	import PackageTile from '$lib/components/PackageTile.svelte';
 	import { get } from 'svelte/store';
+	import PackageOverview from '$lib/components/PackageOverview.svelte';
 
 	import { packages, scanning } from '../store';
 
@@ -24,6 +25,8 @@
 <div class="package-viewer page">
 	<BackButton />
 	<h1 class="package-viewer-headline">Your package.json</h1>
+
+	<PackageOverview />
 
 	<div class="package-viewer-body">
 		{#each $packages as pkg}
@@ -53,6 +56,7 @@
 			grid-auto-rows: 120px;
 			gap: 10px;
 			padding: 10px;
+			margin-top: 15px;
 			overflow-x: hidden;
 			overflow-y: auto;
 		}
