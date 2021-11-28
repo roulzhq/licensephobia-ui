@@ -10,6 +10,8 @@
 	import PackageOverview from '$lib/components/PackageOverview.svelte';
 
 	import { packages, scanning } from '../store';
+	import { dataset_dev } from 'svelte/internal';
+	import A from './package/[...package].svelte';
 
 	console.log(scanning);
 
@@ -23,7 +25,7 @@
 </svelte:head>
 
 <div class="package-viewer page">
-	<BackButton />
+	<BackButton type="home" />
 	<h1 class="package-viewer-headline">Your package.json</h1>
 
 	<PackageOverview />
@@ -33,7 +35,7 @@
 			<PackageTile
 				versionText={pkg.data.version}
 				licenseTag={pkg.data.package.license.type}
-				name={pkg.data.name}
+				name={pkg.data.found ? pkg.data.package.name : pkg.data.name}
 				id={pkg.data.package.id}
 				description={pkg.data.package.description}
 				linkURL={pkg.data.package.homepage}

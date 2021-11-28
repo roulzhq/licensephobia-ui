@@ -1,6 +1,16 @@
 <script lang="ts">
+	import { type } from 'os';
+	import { packages } from '../../store';
+
+	export let type: 'home' | 'back' = 'back';
+
 	function goBack() {
-		history.back();
+		if (this.type == 'back') {
+			history.back();
+		} else {
+			packages.reset();
+			history.back();
+		}
 	}
 </script>
 

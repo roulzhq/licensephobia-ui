@@ -1,15 +1,14 @@
-
 import { writable } from 'svelte/store';
-import type { PackageResult } from './types';
+import type { ScanResponseMessage } from './types';
 
 function createPackages() {
-	const { subscribe, set, update } = writable([] as PackageResult[]);
+	const { subscribe, set, update } = writable([] as ScanResponseMessage[]);
 
 	return {
 		subscribe,
-		add: (pkg: PackageResult) => {
-      update(state => [...state, pkg])
-    },
+		add: (pkg: ScanResponseMessage) => {
+			update((state) => [...state, pkg]);
+		},
 		reset: () => set([])
 	};
 }
