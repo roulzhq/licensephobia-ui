@@ -1,4 +1,4 @@
-import type { PackageManager, PackageResult } from './types';
+import type { PackageManager, PackageResult, ScanResponseMessage } from './types';
 import { packages } from './store';
 
 export async function scanPackage(file: File) {
@@ -18,7 +18,7 @@ export async function scanPackage(file: File) {
 
 	ws.onmessage = (e) => {
 		const data = e.data;
-		const res: PackageResult = JSON.parse(data);
+		const res: ScanResponseMessage = JSON.parse(data);
 
 		packages.add(res);
 	};
@@ -28,14 +28,17 @@ export async function scanPackage(file: File) {
 	};
 }
 
-export async function searchPackage(packageManager: PackageManager, name: string): Promise<PackageResult> {
+export async function searchPackage(
+	packageManager: PackageManager,
+	name: string
+): Promise<ScanResponseMessage> {
 	const url = `http://localhost:8080/search?packageManager=${packageManager}&name=${name}`;
 
 	const res = await fetch(url);
 
-	if(res.status === 200) {
-		return await res.json() as PackageResult;
+	if (res.status === 200) {
+		return (await res.json()) as ScanResponseMessage;
 	} else {
-		throw new Error('Could not load the given package.')
+		throw new Error('Could not load the given package.');
 	}
 }

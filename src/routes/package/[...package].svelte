@@ -25,7 +25,7 @@
 </script>
 
 <script lang="ts">
-	import { PackageManager, PackageResult } from '../../types';
+	import { PackageManager, PackageDetailResult } from '../../types';
 	import { page } from '$app/stores';
 	import { get } from 'svelte/store';
 
@@ -33,7 +33,7 @@
 
 	import { searchPackage } from '../../api';
 
-	let searchedPackage: PackageResult = null;
+	let searchedPackage: PackageDetailResult = null;
 
 	function getPackageDetails(pkg: string) {
 		// A rather hacky solution to only split the string once by a slash.
@@ -73,18 +73,18 @@
 
 		<div class="package-details">
 			<div class="package-header">
-				<h1>{searchedPackage.name}</h1>
+				<h1>{searchedPackage.package.name}</h1>
 				<p>{packageDetails.manager}</p>
-				<p>{searchedPackage.version}</p>
+				<p>{searchedPackage.package.latestVersion}</p>
 				<a
 					rel="external"
-					href={searchedPackage.url}
+					href={searchedPackage.package.homepage}
 					target="_blank"
-					on:click={(e) => e.stopPropagation()}>{searchedPackage.url}</a
+					on:click={(e) => e.stopPropagation()}>{searchedPackage.package.homepage}</a
 				>
 			</div>
 			<div class="package-description">
-				<h4>{searchedPackage.description}</h4>
+				<h4>{searchedPackage.package.description}</h4>
 			</div>
 		</div>
 		<div class="package-summary" />

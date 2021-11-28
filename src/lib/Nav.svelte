@@ -3,6 +3,7 @@
 </script>
 
 <nav>
+	<img src="../../static/favicon.svg" />
 	<a sveltekit:prefetch class="title" href="/">Licensephobia</a>
 </nav>
 
@@ -17,7 +18,6 @@
 		height: 50px;
 		width: 100vw;
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		border-bottom: 1px solid #afafaf;
 		padding: 0 20px;
@@ -32,5 +32,11 @@
 			font-weight: bold;
 			text-decoration: none;
 		}
+	}
+
+	img {
+		width: 2em;
+		height: 2em;
+		margin-bottom: -6px;
 	}
 </style>

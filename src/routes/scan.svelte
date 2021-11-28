@@ -7,6 +7,7 @@
 	import { goto } from '$app/navigation';
 	import PackageTile from '$lib/components/PackageTile.svelte';
 	import { get } from 'svelte/store';
+	import PackageOverview from '$lib/components/PackageOverview.svelte';
 
 	import { packages, scanning } from '../store';
 
@@ -25,15 +26,17 @@
 	<BackButton />
 	<h1 class="package-viewer-headline">Your package.json</h1>
 
+	<PackageOverview />
+
 	<div class="package-viewer-body">
 		{#each $packages as pkg}
 			<PackageTile
-				versionText={pkg.version.used}
-				licenseTag={pkg.license.type}
-				name={pkg.name}
-				id={pkg.id}
-				description={pkg.description}
-				linkURL={pkg.url}
+				versionText={pkg.data.version}
+				licenseTag={pkg.data.package.license.type}
+				name={pkg.data.name}
+				id={pkg.data.package.id}
+				description={pkg.data.package.description}
+				linkURL={pkg.data.package.homepage}
 			/>
 		{/each}
 	</div>
@@ -52,7 +55,8 @@
 			grid-template-columns: repeat(3, 1fr);
 			grid-auto-rows: 120px;
 			gap: 10px;
-			padding: 10px;
+			padding: 0 10px 10px 10px;
+			margin-top: 15px;
 			overflow-x: hidden;
 			overflow-y: auto;
 		}
