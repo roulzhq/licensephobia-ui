@@ -10,10 +10,6 @@
 	import PackageOverview from '$lib/components/PackageOverview.svelte';
 
 	import { packages, scanning } from '../store';
-	import { dataset_dev } from 'svelte/internal';
-	import A from './package/[...package].svelte';
-
-	console.log(scanning);
 
 	if (!get(scanning)) {
 		goto('/', { replaceState: true });
@@ -33,14 +29,14 @@
 	<div class="package-viewer-body">
 		{#each $packages as pkg}
 			<PackageTile
-				versionText={pkg.data.version}
-				licenseTag={pkg.data.package.license.type}
-				name={pkg.data.found ? pkg.data.package.name : pkg.data.name}
-				id={pkg.data.package.id}
-				description={pkg.data.package.description}
-				linkURL={pkg.data.package.homepage}
-				found={pkg.data.package.license.found}
-				known={pkg.data.package.license.known}
+				versionText={pkg.version}
+				licenseTag={pkg.package.license.type}
+				name={pkg.found ? pkg.package.name : pkg.name}
+				id={pkg.package.id}
+				description={pkg.package.description}
+				linkURL={pkg.package.homepage}
+				found={pkg.package.license.found}
+				known={pkg.package.license.known}
 			/>
 		{/each}
 	</div>
