@@ -12,6 +12,7 @@
 	button {
 		width: 100px;
 		height: 100%;
+		border-radius: 8px;
 		border: none;
 		background: #04f5bd;
 
