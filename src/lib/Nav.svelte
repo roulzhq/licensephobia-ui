@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { packages, scanning } from '../store';
 </script>
 
 <nav>
 	<img src="../../static/favicon.svg" />
-	<a sveltekit:prefetch class="title" href="/">Licensephobia</a>
+	<a sveltekit:prefetch class="title" href="/" on:click={packages.reset}>Licensephobia</a>
 </nav>
 
 <style lang="scss">

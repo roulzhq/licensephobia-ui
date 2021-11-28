@@ -25,7 +25,7 @@
 </svelte:head>
 
 <div class="package-viewer page">
-	<BackButton />
+	<BackButton type="home" />
 	<h1 class="package-viewer-headline">Your package.json</h1>
 
 	<PackageOverview />
