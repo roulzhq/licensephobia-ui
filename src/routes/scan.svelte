@@ -60,7 +60,7 @@
 			padding: 0 10px 10px 10px;
 			margin-top: 15px;
 			overflow-x: hidden;
-			overflow-y: auto;
+			overflow-y: scroll;
 		}
 
 		@media (max-width: 1024px) {
