@@ -3,7 +3,7 @@
 </script>
 
 <div class="tag tag-{type}">
-	<div class="circle-tag circle-tag-{type}" />
+	<div class="circle-tag" />
 	<slot />
 </div>
 
@@ -20,14 +20,25 @@
 		&-info {
 			border-color: #5bbfde;
 			background-color: #dbf1fe;
+
+			.circle-tag {
+				background-color: #5bbfde;
+			}
 		}
 		&-success {
 			border-color: #6ee7b7;
 			background-color: #d1fae5;
+
+			.circle-tag {
+				background-color: #6ee7b7;
+			}
 		}
 		&-error {
 			border-color: #f87171;
 			background-color: #fee2e2;
+			.circle-tag {
+				background-color: #f87171;
+			}
 		}
 	}
 
@@ -36,14 +47,5 @@
 		width: 8px;
 		border-radius: 50%;
 		display: inline-block;
-		&-info {
-			background-color: #5bbfde;
-		}
-		&-success {
-			background-color: #6ee7b7;
-		}
-		&-error {
-			background-color: #f87171;
-		}
 	}
 </style>
