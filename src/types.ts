@@ -7,9 +7,9 @@ export interface PackageResult {
 
 export type LicenseString = 'MIT' | 'GNU';
 
-export interface WebsocketMessage {
+export interface ScanResponseMessage {
 	type: 'package' | 'summary';
-	data: 'PackageResult' | 'SummaryResult';
+	data: PackageResult | SummaryResult;
 }
 
 export interface Package {
