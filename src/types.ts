@@ -3,8 +3,6 @@ export interface PackageResult {
 	name: string;
 	version: string;
 	package: Package;
-	author: string;
-	homepage: string;
 }
 
 export type LicenseString = 'MIT' | 'GNU';
@@ -20,19 +18,13 @@ export interface Package {
 	description: string;
 	latestVersion: string;
 	license: License;
+	author: string;
+	homepage: string;
 }
 
 export interface PackageDetailResult {
 	found: boolean;
-	package: {
-		id: string;
-		name: string;
-		description: string;
-		latestVersion: string;
-		license: License;
-		author: string;
-		homepage: string;
-	};
+	package: Package;
 }
 
 export interface License {
