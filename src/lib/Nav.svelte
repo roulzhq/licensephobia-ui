@@ -4,7 +4,7 @@
 </script>
 
 <nav>
-	<img src="../../static/favicon.svg" />
+	<!-- <img src="../../static/favicon.svg" /> -->
 	<a sveltekit:prefetch class="title" href="/" on:click={packages.reset}>Licensephobia</a>
 </nav>
 
