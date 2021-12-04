@@ -3,11 +3,12 @@
 </script>
 
 <script lang="ts">
-	import BackButton from '../lib/components/BackButton.svelte';
-	import { goto } from '$app/navigation';
-	import PackageTile from '../lib/components/PackageTile.svelte';
-	import { get } from 'svelte/store';
 	import PackageOverview from '$lib/components/PackageOverview.svelte';
+	import BackButton from '$lib/components/BackButton.svelte';
+	import PackageTile from '$lib/components/PackageTile.svelte';
+
+	import { goto } from '$app/navigation';
+	import { get } from 'svelte/store';
 
 	import { packages, scanning } from '../store';
 
