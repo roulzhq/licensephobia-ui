@@ -5,7 +5,7 @@
 <script lang="ts">
 	import PackageOverview from '$lib/components/PackageOverview.svelte';
 	import BackButton from '$lib/components/BackButton.svelte';
-	import Tile from '$lib/components/Tile.svelte';
+	import PackageTile from '$lib/components/PackageTile.svelte';
 
 	import { goto } from '$app/navigation';
 	import { get } from 'svelte/store';
@@ -29,7 +29,7 @@
 
 	<div class="package-viewer-body">
 		{#each $packages as pkg}
-			<Tile
+			<PackageTile
 				versionText={pkg.version}
 				licenseTag={pkg.package.license.type}
 				name={pkg.found ? pkg.package.name : pkg.name}
