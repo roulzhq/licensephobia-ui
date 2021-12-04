@@ -10,8 +10,6 @@
 	import PackageOverview from '$lib/components/PackageOverview.svelte';
 
 	import { packages, scanning } from '../store';
-	import { dataset_dev } from 'svelte/internal';
-	import A from './package/[...package].svelte';
 
 	console.log(scanning);
 
