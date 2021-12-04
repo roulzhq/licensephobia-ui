@@ -1,5 +1,6 @@
 <script>
 	import Tag from '$lib/components/Tag.svelte';
+	import { summary } from '../../store';
 </script>
 
 <div class="overview">
@@ -7,37 +8,21 @@
 	<div class="overview-list">
 		<div class="overview-list-permissions">
 			<h3>Permissions</h3>
-			<Tag type="success">Commercial Use</Tag>
-			<Tag type="success">Distribution</Tag>
-			<Tag type="success">Modification</Tag>
-			<Tag type="success">Patent use</Tag>
-			<Tag type="success">Private use</Tag>
-
-			<!-- 			{#each $summary.conditions.permissions as permission}
+			{#each $summary.conditions.permissions as permission}
 				<Tag type="success">{permission}</Tag>
-			{/each} -->
+			{/each}
 		</div>
 		<div class="overview-list-conditions">
 			<h3>Conditions</h3>
-			<Tag type="info">Disclose source</Tag>
-			<Tag type="info">License notice</Tag>
-			<Tag type="info">Copyright notice</Tag>
-			<Tag type="info">Network use is distribution</Tag>
-			<Tag type="info">Same license</Tag>
-			<Tag type="info">State changes</Tag>
-
-			<!--      {#each $summary.conditions.conditions as condition}
+			{#each $summary.conditions.conditions as condition}
 				<Tag type="info">{condition}</Tag>
-			{/each} -->
+			{/each}
 		</div>
 		<div class="overview-list-limitations">
 			<h3>Limitations</h3>
-			<Tag type="error">Liability</Tag>
-			<Tag type="error">Warranty</Tag>
-
-			<!-- {#each $summary.conditions.limitations as limitation}
+			{#each $summary.conditions.limitations as limitation}
 				<Tag type="error">{limitation}</Tag>
-			{/each} -->
+			{/each}
 		</div>
 	</div>
 </div>

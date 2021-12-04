@@ -1,5 +1,5 @@
-import type { PackageManager, PackageResult, ScanResponseMessage } from './types';
-import { packages } from './store';
+import type { PackageManager, PackageResult, ScanResponseMessage, SummaryResult } from './types';
+import { packages, summary } from './store';
 
 export async function scanPackage(file: File) {
 	const ws = new WebSocket('ws://localhost:8080/scan');
@@ -20,7 +20,11 @@ export async function scanPackage(file: File) {
 		const data = e.data;
 		const res: ScanResponseMessage = JSON.parse(data);
 
-		packages.add(res);
+		if (res.type === 'package') {
+			packages.add(res.data as PackageResult);
+		} else if (res.type === 'summary') {
+			summary.set(res.data as SummaryResult);
+		}
 	};
 
 	ws.onclose = (e) => {

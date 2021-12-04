@@ -5,14 +5,12 @@
 <script lang="ts">
 	import PackageOverview from '$lib/components/PackageOverview.svelte';
 	import BackButton from '$lib/components/BackButton.svelte';
-	import PackageTile from '$lib/components/PackageTile.svelte';
+	import Tile from '$lib/components/Tile.svelte';
 
 	import { goto } from '$app/navigation';
 	import { get } from 'svelte/store';
 
 	import { packages, scanning } from '../store';
-
-	console.log(scanning);
 
 	if (!get(scanning)) {
 		goto('/', { replaceState: true });
@@ -31,13 +29,13 @@
 
 	<div class="package-viewer-body">
 		{#each $packages as pkg}
-			<PackageTile
-				versionText={pkg.data.version}
-				licenseTag={pkg.data.package.license.type}
-				name={pkg.data.found ? pkg.data.package.name : pkg.data.name}
-				id={pkg.data.package.id}
-				description={pkg.data.package.description}
-				linkURL={pkg.data.package.homepage}
+			<Tile
+				versionText={pkg.version}
+				licenseTag={pkg.package.license.type}
+				name={pkg.found ? pkg.package.name : pkg.name}
+				id={pkg.package.id}
+				description={pkg.package.description}
+				linkURL={pkg.package.homepage}
 			/>
 		{/each}
 	</div>
