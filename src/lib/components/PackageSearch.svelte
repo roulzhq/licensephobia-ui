@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { variables } from '../../variables';
+
 	import { onMount } from 'svelte';
 
 	export let onSearch = (search: string) => {};
@@ -8,7 +10,7 @@
 	let socket;
 
 	onMount(() => {
-		socket = new WebSocket('ws://localhost:8080/searchPreview');
+		socket = new WebSocket(`ws://${variables.apiUrl}/searchPreview`);
 
 		socket.onopen = () => {
 			console.log('open');
