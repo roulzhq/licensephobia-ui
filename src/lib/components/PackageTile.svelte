@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
+	import { library } from '@fortawesome/fontawesome-svg-core';
+	import {
+		faCheckCircle,
+		faExclamationCircle,
+		faQuestionCircle
+	} from '@fortawesome/free-solid-svg-icons';
+	import { FontAwesomeIcon } from 'fontawesome-svelte';
 
 	export let id = '';
 	export let name = '';
@@ -8,6 +15,10 @@
 	export let licenseTag = '';
 	export let description = '';
 	export let linkURL = '';
+	export let found = false;
+	export let known = false;
+
+	library.add(faCheckCircle, faExclamationCircle, faQuestionCircle);
 
 	function redirect() {
 		goto(`/package/npm/${id}`);
@@ -27,7 +38,19 @@
 		<button>More details</button>
 	</div>
 
-	<div class="license-badge">{licenseTag}</div>
+	<div class="license-badge">
+		{#if !found && !known}
+			<FontAwesomeIcon icon={faExclamationCircle} />
+			{'UNDEFINED'}
+		{:else if !found}
+			<FontAwesomeIcon icon={faExclamationCircle} />
+		{:else if !known}
+			<FontAwesomeIcon icon={faQuestionCircle} />
+		{:else}
+			<FontAwesomeIcon style="fill:aqua" class="icon" icon={faCheckCircle} />
+		{/if}
+		{licenseTag}
+	</div>
 </div>
 
 <style lang="scss">
@@ -97,5 +120,9 @@
 		right: 10px;
 		font-size: 14px;
 		padding: 6px;
+	}
+
+	.icon path {
+		fill: #15d277;
 	}
 </style>
