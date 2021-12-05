@@ -1,6 +1,16 @@
 <script lang="ts">
+	import { packages } from '../../store';
+
+	export let type: 'home' | 'back' = 'back';
+
 	function goBack() {
-		history.back();
+		if (type === 'back') {
+			history.back();
+		}
+		if (type === 'home') {
+			packages.reset();
+			history.back();
+		}
 	}
 </script>
 
@@ -12,6 +22,7 @@
 	button {
 		width: 100px;
 		height: 100%;
+		border-radius: 8px;
 		border: none;
 		background: #04f5bd;
 

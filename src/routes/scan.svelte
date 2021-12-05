@@ -3,14 +3,14 @@
 </script>
 
 <script lang="ts">
+	import PackageOverview from '$lib/components/PackageOverview.svelte';
 	import BackButton from '$lib/components/BackButton.svelte';
-	import { goto } from '$app/navigation';
 	import PackageTile from '$lib/components/PackageTile.svelte';
+
+	import { goto } from '$app/navigation';
 	import { get } from 'svelte/store';
 
 	import { packages, scanning } from '../store';
-
-	console.log(scanning);
 
 	if (!get(scanning)) {
 		goto('/', { replaceState: true });
@@ -22,18 +22,22 @@
 </svelte:head>
 
 <div class="package-viewer page">
-	<BackButton />
+	<BackButton type="home" />
 	<h1 class="package-viewer-headline">Your package.json</h1>
+
+	<PackageOverview />
 
 	<div class="package-viewer-body">
 		{#each $packages as pkg}
 			<PackageTile
-				versionText={pkg.version.used}
-				licenseTag={pkg.license.type}
-				name={pkg.name}
-				id={pkg.id}
-				description={pkg.description}
-				linkURL={pkg.url}
+				versionText={pkg.version}
+				licenseTag={pkg.package.license.type}
+				name={pkg.found ? pkg.package.name : pkg.name}
+				id={pkg.package.id}
+				description={pkg.package.description}
+				linkURL={pkg.package.homepage}
+				found={pkg.package.license.found}
+				known={pkg.package.license.known}
 			/>
 		{/each}
 	</div>
@@ -52,9 +56,10 @@
 			grid-template-columns: repeat(3, 1fr);
 			grid-auto-rows: 120px;
 			gap: 10px;
-			padding: 10px;
+			padding: 10px 10px 10px 10px;
+			margin-top: 15px;
 			overflow-x: hidden;
-			overflow-y: auto;
+			overflow-y: scroll;
 		}
 
 		@media (max-width: 1024px) {

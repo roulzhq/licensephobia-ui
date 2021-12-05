@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { packages, scanning } from '../store';
 </script>
 
 <nav>
-	<a sveltekit:prefetch class="title" href="/">Licensephobia</a>
+	<!-- <img src="../../static/favicon.svg" /> -->
+	<a sveltekit:prefetch class="title" href="/" on:click={packages.reset}>Licensephobia</a>
 </nav>
 
 <style lang="scss">
@@ -17,7 +19,6 @@
 		height: 50px;
 		width: 100vw;
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		border-bottom: 1px solid #afafaf;
 		padding: 0 20px;
@@ -32,5 +33,11 @@
 			font-weight: bold;
 			text-decoration: none;
 		}
+	}
+
+	img {
+		width: 2em;
+		height: 2em;
+		margin-bottom: -6px;
 	}
 </style>

@@ -1,8 +1,9 @@
-import type { PackageResult } from './types';
-import { packages } from './store';
+import type { PackageManager, PackageResult, ScanResponseMessage, SummaryResult } from './types';
+import { packages, summary } from './store';
+import { globals } from './globals';
 
 export async function scanPackage(file: File) {
-	const ws = new WebSocket('ws://localhost:8080/scan');
+	const ws = new WebSocket(`${globals.api.ws}/scan`);
 
 	ws.onopen = () => {
 		const reader = new FileReader();
@@ -18,12 +19,31 @@ export async function scanPackage(file: File) {
 
 	ws.onmessage = (e) => {
 		const data = e.data;
-		const res: PackageResult = JSON.parse(data);
+		const res: ScanResponseMessage = JSON.parse(data);
 
-		packages.add(res);
+		if (res.type === 'package') {
+			packages.add(res.data as PackageResult);
+		} else if (res.type === 'summary') {
+			summary.set(res.data as SummaryResult);
+		}
 	};
 
 	ws.onclose = (e) => {
 		console.log(e);
 	};
+}
+
+export async function searchPackage(
+	packageManager: PackageManager,
+	name: string
+): Promise<ScanResponseMessage> {
+	const url = `${globals.api.http}/search?packageManager=${packageManager}&name=${name}`;
+
+	const res = await fetch(url);
+
+	if (res.status === 200) {
+		return (await res.json()) as ScanResponseMessage;
+	} else {
+		throw new Error('Could not load the given package.');
+	}
 }
