@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { variables } from '../../variables';
-
 	import { onMount } from 'svelte';
+	import { globals } from '../../globals';
 
 	export let onSearch = (search: string) => {};
 
@@ -10,7 +9,7 @@
 	let socket;
 
 	onMount(() => {
-		socket = new WebSocket(`ws://${variables.apiUrl}/searchPreview`);
+		socket = new WebSocket(`${globals.api.ws}/searchPreview`);
 
 		socket.onopen = () => {
 			console.log('open');

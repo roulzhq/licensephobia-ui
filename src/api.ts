@@ -1,9 +1,9 @@
 import type { PackageManager, PackageResult, ScanResponseMessage, SummaryResult } from './types';
-import {variables} from './variables'
 import { packages, summary } from './store';
+import { globals } from './globals';
 
 export async function scanPackage(file: File) {
-	const ws = new WebSocket(`ws://${variables.apiUrl}/scan`);
+	const ws = new WebSocket(`${globals.api.ws}/scan`);
 
 	ws.onopen = () => {
 		const reader = new FileReader();
@@ -37,7 +37,7 @@ export async function searchPackage(
 	packageManager: PackageManager,
 	name: string
 ): Promise<ScanResponseMessage> {
-	const url = `http://${variables.apiUrl}/search?packageManager=${packageManager}&name=${name}`;
+	const url = `${globals.api.http}/search?packageManager=${packageManager}&name=${name}`;
 
 	const res = await fetch(url);
 
