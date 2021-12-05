@@ -73,15 +73,23 @@
 
 		<div class="package-details">
 			<div class="package-header">
-				<h1>{searchedPackage.package.name}</h1>
-				<p>{packageDetails.manager}</p>
-				<p>{searchedPackage.package.latestVersion}</p>
-				<a
-					rel="external"
-					href={searchedPackage.package.homepage}
-					target="_blank"
-					on:click={(e) => e.stopPropagation()}>{searchedPackage.package.homepage}</a
-				>
+				<div class="detail-no-background">
+					<h1>{searchedPackage.package.name}</h1>
+				</div>
+				<div class="detail-background">
+					<p>{packageDetails.manager}</p>
+				</div>
+				<div class="detail-background">
+					<p>{searchedPackage.package.latestVersion}</p>
+				</div>
+				<div class="detail-background">
+					<a
+						rel="external"
+						href={searchedPackage.package.homepage}
+						target="_blank"
+						on:click={(e) => e.stopPropagation()}>{searchedPackage.package.homepage}</a
+					>
+				</div>
 			</div>
 			<div class="package-description">
 				<h4>{searchedPackage.package.description}</h4>
@@ -96,17 +104,20 @@
 <style lang="scss">
 	.package-details {
 		display: grid;
-		grid-template-rows: 0.3fr 0.2fr;
+		grid-template-rows: 0.2fr 0.2fr;
 	}
 
 	.package-header {
-		display: grid;
-		grid-template-columns: 2fr 1fr 1fr 1.5fr;
+		display: flex;
 	}
 
 	.package-summary {
-		height: 70%;
-		width: 100%;
+		height: 90%;
+		width: 60%;
+		margin-top: 25px;
+		background-color: #ffffff;
+		grid-row: span 2;
+		box-shadow: 3px 2px 6px 2px #00000033;
 	}
 
 	.package-header a {
@@ -115,5 +126,32 @@
 
 	.package-header p {
 		margin-top: 22px;
+	}
+
+	.detail-background {
+		background-color: #ffffff;
+		margin-top: 30px;
+		margin-right: 20px;
+		height: 25%;
+
+		p {
+			margin: 0px;
+			padding: 0px 5px;
+		}
+
+		a {
+			margin: 0px;
+			padding: 0px 5px;
+		}
+	}
+
+	h4 {
+		margin: 0;
+	}
+
+	.detail-no-background {
+		margin-right: 20px;
+		margin-top: 5px;
+		margin-bottom: 5px;
 	}
 </style>
