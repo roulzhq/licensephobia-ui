@@ -109,6 +109,7 @@
 
 	.package-header {
 		display: flex;
+		align-items: center;
 	}
 
 	.package-summary {
@@ -130,7 +131,6 @@
 
 	.detail-background {
 		background-color: #ffffff;
-		margin-top: 30px;
 		margin-right: 20px;
 		height: 25%;
 
@@ -151,7 +151,5 @@
 
 	.detail-no-background {
 		margin-right: 20px;
-		margin-top: 5px;
-		margin-bottom: 5px;
 	}
 </style>
